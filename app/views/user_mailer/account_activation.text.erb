@@ -1,0 +1,5 @@
+Hola <%= @user.name %>,
+
+Bienvenido a AC Informática! Haz click en el link debajo para activar tu cuenta:
+
+<%= edit_account_activation_url(@user.activation_token, email: @user.email) %>

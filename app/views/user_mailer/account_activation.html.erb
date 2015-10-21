@@ -1,0 +1,10 @@
+<h1>AC Informática</h1>
+
+<p>Hola <%= @user.name %>,</p>
+
+<p>
+Bienvenido a AC Informática! Haz click en el link debajo para activar tu cuenta:
+</p>
+
+<%= link_to "Activate", edit_account_activation_url(@user.activation_token,
+                                                    email: @user.email) %>
