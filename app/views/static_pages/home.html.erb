@@ -1,8 +1,14 @@
-<div class="center jumbotron">
-  <h1>Bienvenido a AC Informática</h1>
-
-  <%= link_to "Registrate ahora!", signup_path, class: "btn btn-lg btn-primary" %>
+<%= render 'layouts/carousel' %>
+<div class="row">
+  <% if @products.any? %>
+  	<% if logged_in? && current_user.admin? %>
+  		<p><%= link_to "Nuevo producto", new_product_path, class: "btn btn-lg btn-primary" %></p>
+  	<%end%>
+    <h3>Productos (<%= @products.count %>)</h3>
+    <%= will_paginate @products %>
+    <ol class="products">
+      <%= render @products %>
+    </ol>
+    <%= will_paginate @products %>
+  <% end %>
 </div>
-
-<%= link_to image_tag("rails.png", alt: "Rails logo"),
-            'http://rubyonrails.org/' %>

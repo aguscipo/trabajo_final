@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: Impresora HL-1212
+  description: Impresora Monofunción. Segmento Oficina y Profesionales. Teconología de Impresión Laser. Resolución de Impresión 2400x600dpi 
+  category: Impresora
+  price: 2000
+  stock: 10
+  code: 1
+  trademark: Epson
+  created_at: <%= 10.minutes.ago %>
+
+two:
+  name: Notebook ASUS A4
+  description: Marca CPU Intel. Versión CPU Core i5. Modelo CPU 4210U. Velocidad CPU 1.7 GHz. Memoria Ram 4 GB. Unidad Óptica DVD-RW
+  category: Notebook
+  price: 9000
+  stock: 5
+  code: 2
+  trademark: ASUS
+  created_at: <%= 20.minutes.ago %>
+
+most_recent:
+  name: iPad Mini 16 Gb Plateado MD531LEA SILVER
+  description: iPad Mini. Wi-Fi. Tamaño de Pantalla 7.9. Pantalla Multitouch. Resolución Máxima 1024 x 768.
+  category: Tablet
+  price: 7000
+  stock: 15
+  code: 3
+  trademark: Apple
+  created_at: <%= Time.zone.now %>

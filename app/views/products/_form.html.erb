@@ -1,0 +1,37 @@
+<%= form_for(@product , html: { multipart: true }) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+    <%= f.label :codigo %>
+    <%= f.text_field :code, class: 'form-control' %>
+
+    <%= f.label :nombre %>
+    <%= f.text_field :name, class: 'form-control' %>
+   
+    <%= f.label :descripcion %>
+    <%= f.text_area :description%>
+
+    <%= f.label :categoria %>
+    <%= f.text_field :category, class: 'form-control' %>
+  
+    <%= f.label :marca, placeholder: "Ingrese marca del producto" %>
+    <%= f.text_field :trademark, class: 'form-control' %>
+    
+    <%= f.label :precio %>
+ 	  <%= number_field(:product, :price, in: 1.0..50000.0, step: 0.5) %>
+
+    <%= f.label :stock %>
+	  <%= number_field(:product, :stock, in: 1..10000, step: 1) %>
+
+    <span class="picture">
+        <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
+    </span>
+ <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+<% end %>
+
+<script type="text/javascript">
+  $('#micropost_picture').bind('change', function() {
+    var size_in_megabytes = this.files[0].size/1024/1024;
+    if (size_in_megabytes > 5) {
+      alert('El tamaño máximo es 5MB. Por favor seleccione una imagen más pequeña.');
+    }
+  });
+</script>
