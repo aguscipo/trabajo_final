@@ -2,45 +2,32 @@
   <!-- Indicators -->
   <ol class="carousel-indicators">
     <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-    <li class="" data-target="#myCarousel" data-slide-to="1"></li>
-    <li class="" data-target="#myCarousel" data-slide-to="2"></li>
+    <% (1..@offers.count).each do |i| %>
+      <li class="" data-target="#myCarousel" data-slide-to=<%=i%>></li>
+    <% end %>
   </ol>
   <div class="carousel-inner" role="listbox">
     <div class="item active">
-      <img class="first-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="First slide">
       <div class="container">
         <div class="carousel-caption">
           <h1>Bienvenido a AC Informática.</h1>
           <% if !logged_in? %>
-            <p>Registrese hoy mismo para poder comprar productos al mejor precio través de mercado pago. También podrá suscribirse para recibir las ofertas mas recientes su cuenta de correo.
+            <p>Registrese hoy mismo para poder comprar productos al mejor precio través de mercado pago. También podrá suscribirse para recibir las ofertas mas recientes en su cuenta de correo.
             </p>
-            <p> <%= link_to "Registrate ahora!", signup_path, class: "btn btn-lg btn-primary" %></p>
+            <p> 
+              <%= link_to "Registrate ahora!", signup_path, class: "btn btn-lg btn-primary"%>
+            </p>
           <% end %>
         </div>
       </div>
     </div>
-    <div class="item">
-          <img class="second-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Second slide">
-          <div class="container">
-            <div class="carousel-caption">
-              <h1>Another example headline.</h1>
-              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-              <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
-            </div>
-          </div>
-        </div>
-    <div class="item">
-<!--       <img class="third-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Third slide"> -->
-      <%= image_tag("oferta-hp.png", :class => "third-slide", :alt => "Third Slide") %>
-
-      <div class="container">
-        <div class="carousel-caption">
-<!--           <h1>One more for good measure.</h1>
-          <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-          <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p> -->
-        </div>
-      </div>
-    </div>
+    <%for offer in @offers%>
+      <%= div_for(offer, class: "item") do %>
+        <% link_to(offer, class: "link_offer") do %>
+          <%= image_tag offer.cover_picture if offer.cover_picture? %>
+        <%end%>
+      <%end%>
+    <%end%>
   </div>
   <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
     <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>

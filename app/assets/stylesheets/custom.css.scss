@@ -184,15 +184,18 @@ input {
 }
 
 .checkbox {
-  margin-top: -10px;
   margin-bottom: 10px;
   span {
     margin-left: 20px;
-    font-weight: normal;
   }
 }
 
 #session_remember_me {
+  width: auto;
+  margin-left: 0;
+}
+
+#product_offer {
   width: auto;
   margin-left: 0;
 }
@@ -212,4 +215,18 @@ input {
 /* Product images */
 .product-image {
   height: 150px;
+}
+
+.product-show-image {
+  height: 100%;
+  width: 100%;
+}
+
+/* Offer images */
+.link_offer{
+  img{
+    width: 100%;
+    height: 100%;
+  }
+
 }

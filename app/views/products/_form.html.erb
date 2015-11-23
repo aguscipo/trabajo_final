@@ -22,7 +22,18 @@
 	  <%= number_field(:product, :stock, in: 1..10000, step: 1) %>
 
     <span class="picture">
+        <%= f.label :imagen %>
         <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
+    </span>
+
+    <%= f.label :offer, class: "checkbox inline" do %>
+        <%= f.check_box :offer %>
+        <span>Marcar producto como oferta</span>
+    <% end %>
+ 
+    <span class="picture">
+        <%= f.label :imagen_de_portada %>
+        <%= f.file_field :cover_picture, accept: 'image/jpeg,image/gif,image/png' %>
     </span>
  <%= f.submit yield(:button_text), class: "btn btn-primary" %>
 <% end %>

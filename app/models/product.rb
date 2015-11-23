@@ -1,6 +1,7 @@
 class Product < ActiveRecord::Base
   default_scope -> { order(created_at: :desc) }	
   mount_uploader :picture, PictureUploader
+  mount_uploader :cover_picture, PictureUploader
 	validates :name, presence: true, length: { maximum: 100 }
 	validates :price, presence:true
 	validates :stock, presence:true

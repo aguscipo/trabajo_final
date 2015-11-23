@@ -1,8 +1,8 @@
 class StaticPagesController < ApplicationController
  def home
  	@products = Product.paginate(page: params[:page], :per_page => 30)
- 	 #@offers = Product.first(3)
-	 #@product = Product.new if logged_in? && current_user.admin?
+ 	p= Product.where.not(offer:false,cover_picture:nil)
+ 	@offers = p.first(5)
   end
   def help
   end
