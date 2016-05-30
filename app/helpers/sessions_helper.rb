@@ -36,6 +36,11 @@ module SessionsHelper
     !current_user.nil?
   end
 
+  # Returns true if the user is an admin, false otherwise.
+  def admin?
+    current_user.admin?
+  end
+
   # Logs out the current user.
   def log_out
     forget(current_user)

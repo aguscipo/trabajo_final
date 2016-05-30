@@ -1,8 +1,8 @@
 class ProductsController < ApplicationController
 	before_action :admin_user, except: [:show]
-    
+
   def new
-    @product = Product.new 
+    @product = Product.new
   end
 
   def show
@@ -43,4 +43,10 @@ class ProductsController < ApplicationController
 		def product_params
     		params.require(:product).permit(:name, :picture, :description, :category, :price, :stock, :trademark, :code, :offer, :cover_picture)
     end
+
+	#	A list of the param names that can be used for filtering the Product list
+		def filtering_params(params)
+		 params.slice(:name, :category, :trademark)
+		end
+
 end

@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails',                    '4.2.2'
+gem 'rails',                    '4.2.6'
 gem 'bcrypt',                   '3.1.7'
 gem 'faker',                    '1.4.2'
 gem 'carrierwave',              '0.10.0'
@@ -17,6 +17,7 @@ gem 'turbolinks',               '2.3.0'
 gem 'jbuilder',                 '2.2.3'
 gem 'sdoc',                     '0.4.0', group: :doc
 gem 'database_cleaner',         '~> 1.5', '>= 1.5.1'
+gem 'net-ssh'
 
 group :development, :test do
   gem 'sqlite3',     '1.3.9'
@@ -36,4 +37,3 @@ group :production do
   gem 'rails_12factor', '0.0.2'
   gem 'puma',           '2.11.1'
 end
-
