@@ -1,12 +1,12 @@
 class ProductsController < ApplicationController
-	before_action :admin_user, except: [:show]
+	before_action :admin_user, except: [:show, :search]
 
   def new
     @product = Product.new
   end
 
   def show
-      @product = Product.find(params[:id])
+    @product = Product.find(params[:id])
   end
 
   def edit
@@ -37,6 +37,14 @@ class ProductsController < ApplicationController
         Product.find(params[:id]).destroy
         flash[:success] = "El producto ha sido eliminado"
         redirect_to request.referrer || root_url
+	end
+
+	def search
+		products = Product.search do
+		  fulltext params[:search]
+    end
+		@results = products.results
+		flash.now[:info] = "Ningún nombre de prodcuto coincide con su búsqueda" if !@results.any?
 	end
 
 	private

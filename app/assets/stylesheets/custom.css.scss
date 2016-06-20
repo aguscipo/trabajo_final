@@ -4,7 +4,7 @@
 /* mixins, variables, etc. */
 
 $gray-medium-light: #eaeaea;
-
+$myBlue: #428bca;
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
   -webkit-box-sizing: border-box;
@@ -14,7 +14,7 @@ $gray-medium-light: #eaeaea;
 /* universal */
 
 body {
-  padding-top: 60px;
+/*  padding-top: 60px;*/
 }
 
 section {
@@ -61,7 +61,6 @@ p {
 
 
 /* header */
-
 #logo {
   float: left;
   margin-right: 10px;
@@ -72,11 +71,25 @@ p {
   padding-top: 9px;
   font-weight: bold;
   &:hover {
-    color: #777;
+    color: $myBlue;
     text-decoration: none;
   }
 }
+.navbar-logo{
+  margin-right: 10px;
 
+  float: left;
+  font-size: 1.7em;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  padding-top: 9px;
+  font-weight: bold;
+  &:hover {
+    color: $myBlue;
+    text-decoration: none;
+  }
+}
 .navbar-inverse {
     border-color: #777;
     background-color: #FF7F50;
@@ -85,6 +98,12 @@ p {
 .navbar-wrapper{
   margin-top:0px;
 }
+
+.navbar-coral{
+  margin-top:0px;
+  background-color: coral;
+}
+
 
 /* footer */
 
@@ -170,6 +189,7 @@ input, textarea, select, .uneditable-input {
 
 .navbar-form {
   margin-bottom: 0px;
+  border-color:$myBlue;
 }
 
 input {
@@ -259,7 +279,10 @@ input {
   line-height: 1.42857;
   border-radius: 4px;
   color: #333;
-  background-color: #FFF;
-  border-color: #CCC;
+  background-color: $myBlue;
+  background-color: #428bca;
+  border-color: #357ebd;
+  color: #fff;
+  width: auto;
   -moz-user-select: none;
  }

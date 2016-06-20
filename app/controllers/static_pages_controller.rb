@@ -3,7 +3,8 @@ class StaticPagesController < ApplicationController
  	@products = Product.paginate(page: params[:page], :per_page => 30)
  	p= Product.where.not(offer:false,cover_picture:nil)
  	@offers = p.first(5)
-  end
+ end
+
   def help
   end
 

@@ -1,4 +1,7 @@
 class Product < ActiveRecord::Base
+  searchable do
+    text :name
+  end
   default_scope -> { order(created_at: :desc) }
   mount_uploader :picture, PictureUploader
   mount_uploader :cover_picture, PictureUploader

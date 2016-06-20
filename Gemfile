@@ -18,12 +18,14 @@ gem 'jbuilder',                 '2.2.3'
 gem 'sdoc',                     '0.4.0', group: :doc
 gem 'database_cleaner',         '~> 1.5', '>= 1.5.1'
 gem 'net-ssh'
+gem 'sunspot_rails'
 
 group :development, :test do
   gem 'sqlite3',     '1.3.9'
   gem 'byebug',      '3.4.0'
   gem 'web-console', '2.0.0.beta3'
   gem 'spring',      '1.1.3'
+  gem 'sunspot_solr' # optional pre-packaged Solr distribution for use in development
 end
 
 group :test do

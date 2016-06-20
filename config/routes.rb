@@ -14,9 +14,10 @@ Rails.application.routes.draw do
   get 'signup'  => 'users#new'
   get 'new_product' => 'products#new'
   get    'login'   => 'sessions#new'
+  get 'search' => 'products#search'
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
-  resources :users  
+  resources :users
   resources :products
   resources :account_activations, only: [:edit]
   resources :password_resets, only: [:new, :create, :edit, :update]
