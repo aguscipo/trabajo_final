@@ -1,0 +1,30 @@
+<% provide(:title, @category.name) %>
+<% if @results.any? %>
+  <% if logged_in? && current_user.admin? %>
+    <p><%= link_to "Nuevo producto", new_product_path, class: "btn btn-lg btn-primary" %></p>
+  <%end%>
+
+  <h3>Productos (<%= @results.count %>)</h3>
+  <%= will_paginate @results %>
+  <%
+    p=0
+    cant_rows=@results.count.divmod(3)
+    extra_row = cant_rows[1] == 0 ? false : true
+  %>
+  <% for i in 0..cant_rows[0]-1 %>
+    <div class="row">
+      <ol class="products">
+         <%= render @results[p..p+2] %>
+         <% p+=3 %>
+      </ol>
+    </div>
+  <% end %>
+  <% if extra_row %>
+    <div class="row">
+      <ol class="products">
+        <%= render @results[p..p+cant_rows[1]] %>
+      </ol>
+    </div>
+  <% end %>
+  <%= will_paginate @results %>
+<% end %>

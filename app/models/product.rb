@@ -1,4 +1,5 @@
 class Product < ActiveRecord::Base
+  belongs_to :category
   searchable do
     text :name
   end
@@ -8,7 +9,6 @@ class Product < ActiveRecord::Base
 	validates :name, presence: true, length: { maximum: 100 }
 	validates :price, presence:true
 	validates :stock, presence:true
-	validates :category, presence:true
 	validates :description, presence:true
 	validates :trademark, presence:true
 	validates :code, presence:true

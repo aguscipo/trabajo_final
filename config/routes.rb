@@ -1,10 +1,9 @@
 Rails.application.routes.draw do
+
+
   get 'password_resets/new'
-
   get 'password_resets/edit'
-
   get 'sessions/new'
-
   get 'users/new'
 
   root             'static_pages#home'
@@ -13,12 +12,17 @@ Rails.application.routes.draw do
   get 'contact' => 'static_pages#contact'
   get 'signup'  => 'users#new'
   get 'new_product' => 'products#new'
+  get 'new_category' => 'categories#new'
   get    'login'   => 'sessions#new'
-  get 'search' => 'products#search'
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
   resources :users
-  resources :products
+  resources :products do
+    collection do
+      get 'search'
+    end
+  end
+  resources :categories, param: :name
   resources :account_activations, only: [:edit]
   resources :password_resets, only: [:new, :create, :edit, :update]
   # The priority is based upon order of creation: first created -> highest priority.

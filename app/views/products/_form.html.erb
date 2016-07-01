@@ -5,21 +5,23 @@
 
     <%= f.label :nombre %>
     <%= f.text_field :name, class: 'form-control' %>
-   
-    <%= f.label :descripcion %>
-    <%= f.text_area :description%>
 
-    <%= f.label :categoria %>
-    <%= f.text_field :category, class: 'form-control' %>
+    <%= f.label :descripcion %>
+    <%= f.text_area :description, class: 'form-control'%>
+
+    <%= f.label :categoria%> |
+    <%= link_to "Añadir Categoria", new_category_path %> |
+    <%= link_to "Editar Categorias", categories_path %> 
+    <%= f.collection_select :category_id, Category.all, :id, :name, {prompt: "Seleccione una categoría"}, {class: "form-control"} %>
 
     <%= f.label :marca, placeholder: "Ingrese marca del producto" %>
     <%= f.text_field :trademark, class: 'form-control' %>
 
     <%= f.label :precio %>
- 	  <%= number_field(:product, :price, in: 1.0..50000.0, step: 0.5) %>
+ 	  <%= f.number_field :price, in: 1.0..50000.0, step: 0.5, class: 'form-control' %>
 
     <%= f.label :stock %>
-	  <%= number_field(:product, :stock, in: 1..10000, step: 1) %>
+    <%= f.number_field :stock,  in: 1..10000, step: 1, class: 'form-control' %>
 
     <span class="picture">
         <%= f.label :imagen %>

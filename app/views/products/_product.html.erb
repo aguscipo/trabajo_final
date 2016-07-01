@@ -2,14 +2,13 @@
 	<%= link_to product do %>
  	 <%= image_tag product.picture.url ,:class => "product-image" if product.picture? %>
  	<% end %>
-  <h2><%= product.name %>
-  	<% if logged_in? && current_user.admin? %>
-  		| <%= link_to "Eliminar", product, method: :delete,
-        	                           	   data: { confirm: "¿Está seguro que desea eliminar este producto?"} %>
-  		| <%= link_to "Editar" ,edit_product_path(product)%>
-  	<% end %>
-  </h2>
-  <p> $<%= product.price%> - <%= product.description%> </p>
+  <h2><%= product.name %></h2>
+	<p id="product-price"> $<%= product.price%> </p>
+	<% if logged_in? && current_user.admin? %>
+	 <p> <%= link_to "Eliminar", product, method: :delete,
+      	                           	   data: { confirm: "¿Está seguro que desea eliminar este producto?"} %>
+		| <%= link_to "Editar" ,edit_product_path(product)%>
+	<% end %> </p>
 
   <p><a class="btn btn-default" href="#" role="button">Ver detalles »</a></p>
 </div>
