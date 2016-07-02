@@ -9,13 +9,15 @@
     <%= f.label :descripcion %>
     <%= f.text_area :description, class: 'form-control'%>
 
-    <%= f.label :categoria%> |
+    <%= f.label :categoria %> |
     <%= link_to "Añadir Categoria", new_category_path %> |
-    <%= link_to "Editar Categorias", categories_path %> 
+    <%= link_to "Editar Categorias", categories_path %>
     <%= f.collection_select :category_id, Category.all, :id, :name, {prompt: "Seleccione una categoría"}, {class: "form-control"} %>
 
-    <%= f.label :marca, placeholder: "Ingrese marca del producto" %>
-    <%= f.text_field :trademark, class: 'form-control' %>
+    <%= f.label :marca %> |
+    <%= link_to "Añadir Marca", new_trademark_path %> |
+    <%= link_to "Editar Marca", trademarks_path %>
+    <%= f.collection_select :trademark_id, Trademark.all, :id, :name, {prompt: "Seleccione una marca"}, {class: "form-control"} %>
 
     <%= f.label :precio %>
  	  <%= f.number_field :price, in: 1.0..50000.0, step: 0.5, class: 'form-control' %>

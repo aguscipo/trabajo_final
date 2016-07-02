@@ -46,17 +46,10 @@ class ProductsController < ApplicationController
 		@results = products.results
 		flash.now[:info] = "Ningún nombre de prodcuto coincide con su búsqueda" if !@results.any?
 	end
-=begin
-	def search_by_category
-		products= Product.search do
-  		with(:category_id, params[:category_id])
-		end
-		@results = products.results
-	end
-=end
+
 	private
 		def product_params
-    		params.require(:product).permit(:name, :picture, :description, :category_id, :price, :stock, :trademark, :code, :offer, :cover_picture)
+    		params.require(:product).permit(:name, :picture, :description, :category_id, :price, :stock, :trademark_id, :code, :offer, :cover_picture)
     end
 
 	#	A list of the param names that can be used for filtering the Product list

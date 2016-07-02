@@ -1,0 +1,5 @@
+<li>
+  <%= link_to trademark.name, edit_trademark_path(trademark) %>
+  | <%= link_to "Eliminar", trademark, method: :delete,
+                                  data: { confirm: "¿Estás seguro?" } %>
+</li>

@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get 'signup'  => 'users#new'
   get 'new_product' => 'products#new'
   get 'new_category' => 'categories#new'
+  get 'new_trademark' => 'trademarks#new'
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
@@ -22,6 +23,7 @@ Rails.application.routes.draw do
       get 'search'
     end
   end
+  resources :trademarks, param: :name
   resources :categories, param: :name
   resources :account_activations, only: [:edit]
   resources :password_resets, only: [:new, :create, :edit, :update]
