@@ -1,0 +1,26 @@
+<% if @products.any? %>
+	<% if logged_in? && current_user.admin? %>
+		<p><%= link_to "Nuevo producto", new_product_path, class: "btn btn-lg btn-primary" %></p>
+	<%end%>
+  <h3>Productos (<%= @products.count %>)</h3>
+  <%= will_paginate @products %>
+    <div class="row">
+			<div class="col-sm-12 col-md-10 col-md-offset-1">
+					<table class="table table-hover">
+							<thead>
+									<tr>
+											<th>Producto</th>
+											<th class="text-center">Precio</th>
+											<th> </th>
+									</tr>
+							</thead>
+							<tbody>
+							<% @products.each do |product| %>
+								<%= render product %>
+							<% end %>
+							</tbody>
+					</table>
+			</div>
+    </div>
+  <%= will_paginate @products %>
+<% end %>

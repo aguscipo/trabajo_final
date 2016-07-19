@@ -25,15 +25,10 @@ class ProductCreateTest < ActionDispatch::IntegrationTest
                                      price: 1000,
                                      stock: 1,
                                      description: "Example Description",
-                                     category: "Example Category",
-                                     code: "100", 
-                                     trademark: "Example Tradmark",
+                                     category_id:1,
+                                     code: "100",
+                                     trademark_id:1,
                                      }
     end
   end
-end 
-
-
-
-
-
+end

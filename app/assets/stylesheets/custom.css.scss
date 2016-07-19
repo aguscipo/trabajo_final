@@ -250,7 +250,8 @@ input {
 
 /* Product images */
 .product-image {
-  height: 150px;
+    height: 75px;
+    width: 100px;
 }
 
 .product-show-image {
@@ -307,4 +308,8 @@ input {
   letter-spacing: -2px;
   margin-bottom: 25%;
   text-align: center;
+}
+
+.link-inherit{
+  color: inherit;
 }

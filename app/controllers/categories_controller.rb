@@ -21,8 +21,8 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.find_by name:(params[:name])
-    products=@category.products
-    @results = products.paginate(page: params[:page], :per_page => 30)
+    results=@category.products
+    @products = results.paginate(page: params[:page], :per_page => 30)
   end
 
   def edit
