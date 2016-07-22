@@ -3,6 +3,9 @@ class Product < ActiveRecord::Base
   belongs_to :trademark
   searchable do
     text :name
+    integer :category_id
+    integer :trademark_id
+    integer :price
   end
   default_scope -> { order(created_at: :desc) }
   mount_uploader :picture, PictureUploader

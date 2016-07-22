@@ -1,5 +1,5 @@
 class TrademarksController < ApplicationController
-  before_action :admin_user, except: [:show]
+  before_action :admin_user, except: [:show,:search]
 
   def index
     @trademarks = Trademark.paginate(page: params[:page])
@@ -37,6 +37,19 @@ class TrademarksController < ApplicationController
     (Trademark.find_by name:(params[:name])).destroy
     flash[:success] = "La marca ha sido eliminada"
     redirect_to request.referrer || root_url
+  end
+
+  def search
+    trademark= Trademark.find_by name:(params[:trademark])
+    category= Category.find_by name:(params[:category])
+    search= Product.search do
+     all_of do
+       with(:category_id, category.id)
+       with(:trademark_id, trademark.id)
+     end
+    end
+    @products = search.results
+    render 'search'
   end
 
   private

@@ -1,8 +1,8 @@
 <tr>
 	<td class="col-sm-8 col-md-6">
 		<div class="media">
-			<%= link_to product,class:'thumbnail pull-left' do %>
-			 <%= image_tag product.picture.url ,:class => "product-image" if product.picture? %>
+			<%= link_to product,class:'link-image thumbnail pull-left' do %>
+			 <%= image_tag product.picture.url if product.picture? %>
 			<% end %>
 				<div class="media-body">
 						<h4 class="media-heading">  <%= link_to product.name, product %></h4>
@@ -12,15 +12,17 @@
 	</td>
 	<td class="col-sm-1 col-md-1 text-center"><p id="product-price">$<%=product.price%></p></td>
 	<% if logged_in? && current_user.admin? %>
-	<td class="col-md-1">
-		<%= link_to "Editar" ,edit_product_path(product), class: "btn btn-warning" %>
-	</td>
-
-	<td class="col-md-1">
-		<%= link_to "Eliminar", product, method: :delete, class: "btn btn-danger",
-																		data: { confirm: "¿Está seguro que desea eliminar este producto?"} %>
-	</td>
-
+		<td class="col-md-1">
+			<%= link_to "Editar" ,edit_product_path(product), class: "btn btn-warning" %>
+		</td>
+		<td class="col-md-1">
+			<%= link_to "Eliminar", product, method: :delete, class: "btn btn-danger",
+																			data: { confirm: "¿Está seguro que desea eliminar este producto?"} %>
+		</td>
+	<% else %>
+		<td class="col-md-1">
+			<%= link_to "Comprar" , product, class: "btn btn-success" %>
+		</td>
   <% end %>
 
 </tr>

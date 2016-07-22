@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get 'new_product' => 'products#new'
   get 'new_category' => 'categories#new'
   get 'new_trademark' => 'trademarks#new'
+  get 'search_by_trademark' => 'trademarks#search'
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'

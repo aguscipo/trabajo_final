@@ -42,6 +42,7 @@ class ProductsController < ApplicationController
 	def search
 		search = Product.search do
 		  fulltext params[:search]
+			order_by :price, :asc
     end
 		@products = search.results
 		flash.now[:info] = "Ningún nombre de prodcuto coincide con su búsqueda" if !@products.any?

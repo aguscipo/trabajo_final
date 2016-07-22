@@ -5,7 +5,23 @@
   <h3>Productos (<%= @products.count %>)</h3>
   <%= will_paginate @products %>
     <div class="row">
-			<div class="col-sm-12 col-md-10 col-md-offset-1">
+			<div class="col-md-2">
+				<% if !@trademarks.nil? && @trademarks.count > 1 %>
+					</br>
+					<strong>Marcas</strong>
+		      <% @trademarks.each do |trademark| %>
+		        </br>
+		        <%= link_to search_by_trademark_path(:trademark => trademark,:category => @category) do %>
+		          <%=trademark.name %>
+		        <% end %>
+					<% end %>
+				<% end %>
+				</br></br>
+				<strong>Rango de precios</strong>
+
+    	</div>
+
+			<div class="col-md-10">
 					<table class="table table-hover">
 							<thead>
 									<tr>
@@ -22,5 +38,6 @@
 					</table>
 			</div>
     </div>
+
   <%= will_paginate @products %>
 <% end %>

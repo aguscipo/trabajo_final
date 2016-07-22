@@ -20,9 +20,17 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    @category = Category.find_by name:(params[:name])
-    results=@category.products
-    @products = results.paginate(page: params[:page], :per_page => 30)
+    category = Category.find_by name:(params[:name])
+    search = Product.search do
+      with(:category_id, category.id)
+      order_by :price, :asc
+    end
+    @products=search.results
+    @category = category
+    @trademarks = Set.new
+    @products.each do |product|
+      @trademarks.add(product.trademark)
+    end
   end
 
   def edit
