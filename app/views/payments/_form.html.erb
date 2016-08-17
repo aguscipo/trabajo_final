@@ -1,0 +1,31 @@
+
+<%= form_for @payment, :html => {:id => "pay", :name =>"pay"} do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+	<%= f.label :email %>
+	<%= f.email_field :email, class: 'form-control', id: "email", name:"email"  %>
+
+  <%= f.label :card_number %>
+  <%= f.text_field :card_number, class: 'form-control', id: "cardNumber", 'data-checkout':"cardNumber" %>
+
+  <%= f.label :security_code %>
+  <%= f.text_field :security_code, class: 'form-control',id: "securityCode",'data-checkout':"securityCode" %>
+
+  <%= f.label :expiration_month %>
+  <%= number_field_tag :expiration_month, nil, in: 1...13, class: 'form-control',id:'cardExpirationMonth','data-checkout':"cardExpirationMonth"%>
+
+  <%= f.label :expiration_year %>
+  <%= number_field_tag :expiration_year, nil, in: 2016...2030, class: 'form-control', id:'cardExpirationYear','data-checkout':"cardExpirationYear"%>
+
+  <%= f.label :card_holder %>
+  <%= f.text_field :card_holder, class: 'form-control', id: "cardholderName", 'data-checkout':"cardholderName"%>
+
+
+  <%= f.label :doc_type %>
+  <%= f.select :doc_type,{}, {}, class:'form-control', id:"docType", 'data-checkout':"docType" %>
+
+  <%= f.label :doc_number %>
+  <%= f.text_field :doc_number, class: 'form-control', id: "docNumber",'data-checkout':"docNumber" %>
+
+  <%= submit_tag "Comprar", class: "btn btn-primary" %>
+<%end%>

@@ -84,14 +84,20 @@ p {
 }
 .navbar-logo{
   margin-right: 10px;
-
+  font-family: c;
   float: left;
   font-size: 1.7em;
   color: white;
-  text-transform: uppercase;
   letter-spacing: -1px;
   padding-top: 9px;
-  font-weight: bold;
+  color: #120A89;
+  img{
+    height: 40px;
+    &:hover {
+      color: $myBlue;
+      text-decoration: none;
+    }
+  }
   &:hover {
     color: $myBlue;
     text-decoration: none;
@@ -107,8 +113,8 @@ p {
 }
 
 .navbar-coral{
-  margin-top:0px;
-  background-color: coral;
+  margin-bottom: 0px;
+  margin-top: 0px;
 }
 
 
@@ -270,9 +276,6 @@ input {
 }
 
 /* Carousel */
- #myCarousel{
-   margin-top:50px;
- }
 
  .carousel-inner > .item > img, .carousel-inner > .item > a > img {
      display: block;

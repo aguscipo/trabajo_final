@@ -1,7 +1,20 @@
-<% provide(:title, 'Marcas') %>
-<h1>Listado Marcas</h1>
-<%= will_paginate %>
-<ul class="users">
- 	 <%= render @trademarks %>
-</ul>
-<%= will_paginate %>
+<div class="container">
+  <div class="well">
+    <%= link_to "New Trademark", new_trademark_path, remote: true, class: "btn btn-primary" %>
+  </div>
+  <div class="new-trademark"></div>
+
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+    </thead>
+    <tbody class="trademark-index">
+      <%= render "index" %>
+    </tbody>
+  </table>
+</div>
+<div id="trademark-modal" class="modal fade"></div>

@@ -1,0 +1,12 @@
+$("ul.errors").html("")
+<% if @category.errors.any? %>
+  <% @category.errors.full_messages.each do |message| %>
+    $("ul.errors").append($("<li />").html("<%= message.html_safe %>"))
+  <% end %>
+<% else %>
+  $(".category-index").html("<%= escape_javascript(render 'index') %>")
+  $("#category-modal").modal("hide")
+  <%if controller.controller_name == "categories" && controller.action_name == "create"%>
+    location.reload()
+  <% end %>
+<% end %>

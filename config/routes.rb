@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
 
+  get 'products_list/filter_by_trademark'
+
   get 'password_resets/new'
   get 'password_resets/edit'
   get 'sessions/new'
@@ -14,20 +16,29 @@ Rails.application.routes.draw do
   get 'new_product' => 'products#new'
   get 'new_category' => 'categories#new'
   get 'new_trademark' => 'trademarks#new'
-  get 'search_by_trademark' => 'trademarks#search'
+  get 'filter' => 'products_list#filter'
+  get 'order' => 'products_list#order'
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
+  get 'save_card'=> 'payments#save'
+  post 'pay' => 'payments#pay'
   resources :users
   resources :products do
     collection do
       get 'search'
     end
   end
-  resources :trademarks, param: :name
-  resources :categories, param: :name
+  resources :trademarks,param: :name do
+    get "delete"
+  end
+  resources :categories, param: :name do
+    get "delete"
+  end
+
   resources :account_activations, only: [:edit]
   resources :password_resets, only: [:new, :create, :edit, :update]
+  resources :payments,only: [:new,:create]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

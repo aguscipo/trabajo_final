@@ -6,21 +6,33 @@
   <%= will_paginate @products %>
     <div class="row">
 			<div class="col-md-2">
-				<% if !@trademarks.nil? && @trademarks.count > 1 %>
-					</br>
+				</br>
+				<% if !@trademarks.nil?%>
 					<strong>Marcas</strong>
 		      <% @trademarks.each do |trademark| %>
 		        </br>
-		        <%= link_to search_by_trademark_path(:trademark => trademark,:category => @category) do %>
+		        <%= link_to filter_path(:trademark => trademark,:category => @category) do %>
 		          <%=trademark.name %>
 		        <% end %>
 					<% end %>
-				<% end %>
+				<% else %>
+					<strong>Marca</strong>
+					</br>
+				 	<%= link_to @category do%>
+				 		<%=@trademark.name%>
+						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+					<%end %>
+				<%end %>
 				</br></br>
-				<strong>Rango de precios</strong>
-
-    	</div>
-
+				<strong>Ordenar por</strong>
+				<%=form_tag(order_path , method: 'get') do %>
+					<%= hidden_field_tag :category , @category[:name] %>
+					<% if !@trademark.nil?%>
+						<%= hidden_field_tag :trademark , @trademark[:name] %>
+					<% end %>
+					<%=select_tag "order_by", options_for_select([ "Menor precio", "Mayor precio", "*Mas visto*", "*Mas vendido*" ],@default), class: "form-control", :onchange => "this.form.submit()"%>
+				<% end %>
+			</div>
 			<div class="col-md-10">
 					<table class="table table-hover">
 							<thead>
@@ -32,12 +44,11 @@
 							</thead>
 							<tbody>
 							<% @products.each do |product| %>
-								<%= render product %>
+								<%= render product%>
 							<% end %>
 							</tbody>
 					</table>
 			</div>
     </div>
-
   <%= will_paginate @products %>
 <% end %>

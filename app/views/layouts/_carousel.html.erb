@@ -8,20 +8,14 @@
   </ol>
   <div class="carousel-inner" role="listbox">
     <div class="item active">
+      <%= image_tag ("portada2.jpg") %>
+
       <div class="container">
         <div class="carousel-caption">
-          <% if !logged_in? %>
-            <h1>Bienvenido a AC Informática.</h1>
-            <h3>Acercate a la tecnología!</h3>
-            <p>Registrese hoy mismo para poder comprar productos al mejor precio través de mercado pago. También podrá suscribirse para recibir las ofertas mas recientes en su cuenta de correo.
-            </p>
-            <p>
-              <%= link_to "Registrate ahora!", signup_path, class: "btn btn-lg btn-primary"%>
-            </p>
-          <% else %>
-            <h1 id="titulo-logueado">Bienvenido a AC Informática.</h1>
-            <h3>Acercate a la tecnología!</h3>
-          <% end %>
+            <h1>Acercate a la tecnología!</h1>
+            <%if !logged_in?%>
+              <p><%= link_to "Registrate ahora!", signup_path, class: "btn btn-lg btn-primary"%>  </p>
+            <%end%>
         </div>
       </div>
     </div>

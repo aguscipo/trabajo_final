@@ -11,3 +11,4 @@
 		<p> Categoría: <%=Category.find(@product.category_id).name%></p>
 	</div>
 </div>
+<%= link_to "Comprar", new_payment_path, class: "btn btn-lg btn-success" %>

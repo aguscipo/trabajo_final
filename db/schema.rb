@@ -11,13 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160701215626) do
+ActiveRecord::Schema.define(version: 20160804184313) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.string   "email"
+    t.string   "card_number"
+    t.string   "security_code"
+    t.string   "expiration_month"
+    t.string   "expiration_year"
+    t.string   "card_holder"
+    t.string   "doc_type"
+    t.string   "doc_number"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
   create_table "products", force: :cascade do |t|

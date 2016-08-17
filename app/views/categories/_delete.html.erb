@@ -1,0 +1,15 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+  <div class="modal-header">
+    <h3>Borrar Categoria</h3>
+  </div>
+  <div class="modal-body">
+  <ul class="errors"></ul>
+  Esta seguro que desea borrar la categoria <b><%= @category.name %></b>?
+  </div>
+  <div class="modal-footer">
+    <%= link_to "Si, Borrar", category_path(@category), method: :delete, remote: true, class: "btn btn-danger" %>
+    <%= link_to "Cancelar", "#", class: "btn btn-default", data: { dismiss: "modal" } %>
+  </div>
+  </div>
+</div>

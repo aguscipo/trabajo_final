@@ -19,6 +19,7 @@ gem 'sdoc',                     '0.4.0', group: :doc
 gem 'database_cleaner',         '~> 1.5', '>= 1.5.1'
 gem 'net-ssh'
 gem 'sunspot_rails'
+gem 'mercadopago-sdk'
 
 group :development, :test do
   gem 'sqlite3',     '1.3.9'

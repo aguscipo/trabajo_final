@@ -1,0 +1,12 @@
+$("ul.errors").html("")
+<% if @trademark.errors.any? %>
+  <% @trademark.errors.full_messages.each do |message| %>
+    $("ul.errors").append($("<li />").html("<%= message.html_safe %>"))
+  <% end %>
+<% else %>
+  $(".trademark-index").html("<%= escape_javascript(render 'index') %>")
+  $("#trademark-modal").modal("hide")
+  <%if controller.controller_name == "trademarks" && controller.action_name == "create"%>
+    location.reload()
+  <% end %>
+<% end %>

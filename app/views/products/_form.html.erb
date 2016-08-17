@@ -10,13 +10,13 @@
     <%= f.text_area :description, class: 'form-control'%>
 
     <%= f.label :categoria %> |
-    <%= link_to "Añadir Categoria", new_category_path %> |
-    <%= link_to "Editar Categorias", categories_path %>
+    <%= link_to "Añadir Categoria", new_category_path, remote: true %> |
+    <%= link_to "Administrar Categorias", categories_path %>
     <%= f.collection_select :category_id, Category.all, :id, :name, {prompt: "Seleccione una categoría"}, {class: "form-control"} %>
 
     <%= f.label :marca %> |
-    <%= link_to "Añadir Marca", new_trademark_path %> |
-    <%= link_to "Editar Marca", trademarks_path %>
+    <%= link_to "Añadir Marca", new_trademark_path, remote: true %> |
+    <%= link_to "Administrar Marcas", trademarks_path %>
     <%= f.collection_select :trademark_id, Trademark.all, :id, :name, {prompt: "Seleccione una marca"}, {class: "form-control"} %>
 
     <%= f.label :precio %>
@@ -41,6 +41,9 @@
     </span>
  <%= f.submit yield(:button_text), class: "btn btn-primary" %>
 <% end %>
+
+<div id="trademark-modal" class="modal fade"></div>
+<div id="category-modal" class="modal fade"></div>
 
 <script type="text/javascript">
   $('#micropost_picture').bind('change', function() {
