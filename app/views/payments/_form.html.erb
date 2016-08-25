@@ -1,31 +1,36 @@
 
-<%= form_for @payment, :html => {:id => "pay", :name =>"pay"} do |f| %>
+<%= form_for @payment, :html => {:multipart => true, :id => "pay", :name =>"pay"} do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
 
-	<%= f.label :email %>
-	<%= f.email_field :email, class: 'form-control', id: "email", name:"email"  %>
+	<%= hidden_field_tag :email, User.find(session[:user_id]).email, class: 'form-control', id: "email", name:"email"  %>
 
-  <%= f.label :card_number %>
+  <%= hidden_field_tag :card_holder_name, ' ', id: "cardholderName", 'data-checkout':"cardholderName" %>
+
+  <%= f.label :tarjeta %><br>
+  <%= f.collection_radio_buttons(:card_holder, PaymentMethod.all, :payment_method_id, :name) do |b|
+     b.label(style:"text-align:center") { b.radio_button + b.text }
+  end%>
+  <br></br>
+
+  <%= f.label :numero_tarjeta %>
   <%= f.text_field :card_number, class: 'form-control', id: "cardNumber", 'data-checkout':"cardNumber" %>
 
-  <%= f.label :security_code %>
+  <%= f.label :codigo_de_seguridad %>
   <%= f.text_field :security_code, class: 'form-control',id: "securityCode",'data-checkout':"securityCode" %>
 
-  <%= f.label :expiration_month %>
-  <%= number_field_tag :expiration_month, nil, in: 1...13, class: 'form-control',id:'cardExpirationMonth','data-checkout':"cardExpirationMonth"%>
+  <%= f.label :mes_de_vencimiento %>
+  <%= number_field_tag :expiration_month, nil, in: 1...13, class: 'form-control',id:'cardExpirationMonth',placeholder:'1..12','data-checkout':"cardExpirationMonth"%>
 
-  <%= f.label :expiration_year %>
-  <%= number_field_tag :expiration_year, nil, in: 2016...2030, class: 'form-control', id:'cardExpirationYear','data-checkout':"cardExpirationYear"%>
+  <%= f.label :año_de_vencimiento %>
+  <%= number_field_tag :expiration_year, nil, in: 2016...2030, class: 'form-control', id:'cardExpirationYear',placeholder:'AAAA','data-checkout':"cardExpirationYear"%>
 
-  <%= f.label :card_holder %>
-  <%= f.text_field :card_holder, class: 'form-control', id: "cardholderName", 'data-checkout':"cardholderName"%>
-
-
-  <%= f.label :doc_type %>
+  <%= f.label :tipo_de_documento %>
   <%= f.select :doc_type,{}, {}, class:'form-control', id:"docType", 'data-checkout':"docType" %>
 
-  <%= f.label :doc_number %>
+  <%= f.label :numero_de_documento %>
   <%= f.text_field :doc_number, class: 'form-control', id: "docNumber",'data-checkout':"docNumber" %>
 
+  <%= hidden_field_tag :amount, @amount %>
   <%= submit_tag "Comprar", class: "btn btn-primary" %>
+
 <%end%>

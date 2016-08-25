@@ -1,11 +1,11 @@
 class UsersController < ApplicationController
 
-  before_action :logged_in_user, only: [:edit, :update, :show, :index, :destroy]
-  before_action :correct_user,   only: [:edit, :update, :show]
-  before_action :admin_user,     only: :destroy
+  before_action :logged_in_user, only: [:edit, :update, :destroy]
+  before_action :correct_user,   only: [:edit, :update]
+  before_action :admin_user,     only: [:destroy, :index]
 
   def index
-    @users = User.paginate(page: params[:page])
+    @users = User.paginate(page: params[:page], :per_page => 10)
   end
 
   def destroy
@@ -19,8 +19,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
-    @products = Product.paginate(page: params[:page], :per_page => 30)
+    redirect_to root_url
   end
 
   def create
@@ -43,17 +42,24 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
       flash[:success] = "Perfil actualizado"
-      redirect_to @user
+      redirect_to root_url
     else
       render 'edit'
     end
   end
 
+  def unsubscribe
+    user = User.find_by(email: params[:email])
+    user.update_attribute :subscription, false
+    flash[:info] = "Su subscripcion a las ofertas semanales de E-Shop fue cancelada"
+    redirect_to(root_url)
+  end
+
   private
 
-    def user_params#Cuando se hace el submit del form solo se permiten estos parametros (strong parameters)
+    def user_params #Cuando se hace el submit del form solo se permiten estos parametros (strong parameters)
       params.require(:user).permit(:name, :email, :password,
-                                   :password_confirmation)
+                                   :password_confirmation, :subscription)
     end
 
     # Before filters

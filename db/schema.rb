@@ -11,13 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160804184313) do
+ActiveRecord::Schema.define(version: 20160823131857) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "payment_methods", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.string   "payment_method_id"
   end
 
   create_table "payments", force: :cascade do |t|
@@ -31,7 +38,16 @@ ActiveRecord::Schema.define(version: 20160804184313) do
     t.string   "doc_number"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.integer  "amount"
   end
+
+  create_table "payments_products", id: false, force: :cascade do |t|
+    t.integer "payment_id", null: false
+    t.integer "product_id", null: false
+  end
+
+  add_index "payments_products", ["payment_id", "product_id"], name: "index_payments_products_on_payment_id_and_product_id"
+  add_index "payments_products", ["product_id", "payment_id"], name: "index_payments_products_on_product_id_and_payment_id"
 
   create_table "products", force: :cascade do |t|
     t.string   "name"
@@ -70,6 +86,7 @@ ActiveRecord::Schema.define(version: 20160804184313) do
     t.datetime "activated_at"
     t.string   "reset_digest"
     t.datetime "reset_sent_at"
+    t.boolean  "subscription"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

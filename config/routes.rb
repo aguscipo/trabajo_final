@@ -1,14 +1,6 @@
 Rails.application.routes.draw do
 
-
-  get 'products_list/filter_by_trademark'
-
-  get 'password_resets/new'
-  get 'password_resets/edit'
-  get 'sessions/new'
-  get 'users/new'
-
-  root             'static_pages#home'
+  root 'static_pages#home'
   get 'help'    => 'static_pages#help'
   get 'about'   => 'static_pages#about'
   get 'contact' => 'static_pages#contact'
@@ -18,20 +10,30 @@ Rails.application.routes.draw do
   get 'new_trademark' => 'trademarks#new'
   get 'filter' => 'products_list#filter'
   get 'order' => 'products_list#order'
-  get    'login'   => 'sessions#new'
-  post   'login'   => 'sessions#create'
-  delete 'logout'  => 'sessions#destroy'
-  get 'save_card'=> 'payments#save'
+  get 'login'   => 'sessions#new'
+  get 'unsubscribe' => 'users#unsubscribe'
+  get '/cart'    => 'cart#index'
+  get '/cart/:id' => 'cart#add'
+  get '/cart/delete/:id' => 'cart#remove'
+  get '/cart/increment/:id' => 'cart#increment'
+  get '/cart/decrement/:id' => 'cart#decrement'
+  post 'login' => 'sessions#create'
   post 'pay' => 'payments#pay'
+  post 'new_payment' => 'payments#new'
+  delete 'logout'  => 'sessions#destroy'
+
   resources :users
-  resources :products do
+
+  resources :products, param: :name do
     collection do
       get 'search'
     end
   end
+
   resources :trademarks,param: :name do
     get "delete"
   end
+
   resources :categories, param: :name do
     get "delete"
   end

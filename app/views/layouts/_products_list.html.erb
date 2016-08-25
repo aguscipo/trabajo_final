@@ -1,6 +1,6 @@
 <% if @products.any? %>
 	<% if logged_in? && current_user.admin? %>
-		<p><%= link_to "Nuevo producto", new_product_path, class: "btn btn-lg btn-primary" %></p>
+		<p><%= link_to "Nuevo producto", new_product_path, class: "btn btn-lg btn-primary", id:"new-product" %></p>
 	<%end%>
   <h3>Productos (<%= @products.count %>)</h3>
   <%= will_paginate @products %>
@@ -30,7 +30,7 @@
 					<% if !@trademark.nil?%>
 						<%= hidden_field_tag :trademark , @trademark[:name] %>
 					<% end %>
-					<%=select_tag "order_by", options_for_select([ "Menor precio", "Mayor precio", "*Mas visto*", "*Mas vendido*" ],@default), class: "form-control", :onchange => "this.form.submit()"%>
+					<%=select_tag "order_by", options_for_select([ "Menor precio", "Mayor precio"],@default), class: "form-control", :onchange => "this.form.submit()"%>
 				<% end %>
 			</div>
 			<div class="col-md-10">
@@ -44,7 +44,7 @@
 							</thead>
 							<tbody>
 							<% @products.each do |product| %>
-								<%= render product%>
+								<%= render product %>
 							<% end %>
 							</tbody>
 					</table>

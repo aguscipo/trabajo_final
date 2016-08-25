@@ -1,20 +1,20 @@
 class ProductsController < ApplicationController
-	before_action :admin_user, except: [:show, :search, :filter_by_trademark, :payment]
+	before_action :admin_user, except: [:show, :search]
 
   def new
     @product = Product.new
   end
 
   def show
-    @product = Product.find(params[:id])
+    @product = Product.find_by name: params[:name]
   end
 
   def edit
-      @product = Product.find(params[:id])
+		@product = Product.find_by name: params[:name]
   end
 
   def update
-    @product = Product.find(params[:id])
+		@product = Product.find_by name: params[:name]
     if @product.update_attributes(product_params)
       flash[:success] = "Producto actualizado"
       redirect_to @product
@@ -34,7 +34,7 @@ class ProductsController < ApplicationController
   end
 
 	def destroy
-        Product.find(params[:id]).destroy
+        (Product.find_by name: params[:name]).destroy
         flash[:success] = "El producto ha sido eliminado"
         redirect_to request.referrer || root_url
 	end
@@ -46,27 +46,6 @@ class ProductsController < ApplicationController
     end
 		@products = search.results
 		flash.now[:info] = "Ningún nombre de prodcuto coincide con su búsqueda" if !@products.any?
-	end
-
-	def payment
-
-		$mp = MercadoPago.new('TEST-5640660696498136-080316-544feb8227681243019101f924b99726__LD_LC__-12055441')
-		$mp.sandbox_mode(true)
-		paymentData = Hash[
-				"transaction_amount" => 100,
-				"token" => params[:token],
-				"description" => "Title of what you are paying for",
-				"installments" => 1,
-				"payment_method_id" => "visa",
-				"payer" => Hash[
-					"email" => "test_user_123456@testuser.com"
-				]
-			]
-
-		payment = $mp.post("/v1/payments", paymentData);
-		@payment=payment
-		@paymentData=paymentData
-		render 'payment'
 	end
 
 	private

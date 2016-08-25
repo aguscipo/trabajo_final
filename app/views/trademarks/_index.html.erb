@@ -1,7 +1,7 @@
 <% @trademarks.each do |trademark| %>
   <tr>
     <td><%= trademark.name %></td>
-    <td><%= link_to "Edit", edit_trademark_path(trademark), remote: true, class: "btn btn-warning" %></td>
-    <td><%= link_to "Delete", trademark_delete_path(trademark), remote: true, class: "btn btn-danger" %></td>
+    <td><%= link_to "Editar", edit_trademark_path(trademark), remote: true, class: "btn btn-warning" %></td>
+    <td><%= link_to "Eliminar", trademark_delete_path(trademark), remote: true, class: "btn btn-danger" %></td>
   </tr>
 <% end %>

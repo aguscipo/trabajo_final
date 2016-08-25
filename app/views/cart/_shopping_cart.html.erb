@@ -1,0 +1,27 @@
+<% cart = session[:cart]%>
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <span class="glyphicon glyphicon-shopping-cart"></span> <%= cart_quantity%> productos <span class="caret"></span></a>
+<ul class="dropdown-menu dropdown-cart" role="menu">
+  <% cart.each do |id, quantity| %>
+      <% product = Product.find_by id:(id) %>
+      <li>
+        <span class="item">
+            <span class="item-left">
+            <%= link_to product,class:'link-image-header thumbnail pull-left' do %>
+               <%= image_tag product.picture.url if product.picture? %>
+            <% end %>
+            <span class="item-info">
+              <span><%=product.name[0..12]%>...(<%=quantity%>)</span>
+              <span>$<%=product.price*quantity%></span>
+            </span>
+          </span>
+          <span class="item-right">
+            <a href="/cart/delete/<%= product.id%>" class="btn btn-xs btn-danger pull-right">
+              <span class="glyphicon glyphicon-remove"></span>
+            </a>
+          </span>
+        </span>
+      </li>
+  <% end %>
+  <li class="divider"></li>
+  <li><%= link_to "Ver Carrito", cart_path, class:"text-center"%></li>
+</ul>

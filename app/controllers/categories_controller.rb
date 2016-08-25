@@ -2,7 +2,7 @@ class CategoriesController < ApplicationController
   before_action :admin_user, except: [:show]
 
   def index
-    @categories = Category.paginate(page: params[:page])
+    @categories = Category.paginate(page: params[:page],:per_page => 10)
   end
 
   def new

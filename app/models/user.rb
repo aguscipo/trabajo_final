@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
                     uniqueness: { case_sensitive: false }
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
-  
+
   # Returns the hash digest of the given string.
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
@@ -67,6 +67,13 @@ class User < ActiveRecord::Base
   # Returns true if a password reset has expired.
   def password_reset_expired?
     reset_sent_at < 2.hours.ago
+  end
+
+  def self.weekly_update
+      @user = User.where(subscription: true) #Obtengo los usuarios que estan subsriptos al newsletter semanal
+      @user.each do |u|
+        UserMailer.weekly_mail(u).deliver
+      end
   end
 
   private

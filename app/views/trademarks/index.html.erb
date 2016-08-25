@@ -1,9 +1,10 @@
+<h1>Marcas</h1>
 <div class="container">
   <div class="well">
     <%= link_to "New Trademark", new_trademark_path, remote: true, class: "btn btn-primary" %>
   </div>
   <div class="new-trademark"></div>
-
+  <%= will_paginate %>
   <table class="table table-bordered table-striped">
     <thead>
       <tr>

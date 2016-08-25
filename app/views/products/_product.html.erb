@@ -6,7 +6,11 @@
 			<% end %>
 				<div class="media-body">
 						<h4 class="media-heading">  <%= link_to product.name, product %></h4>
-						<span>Estado: </span><span class="text-success"><strong>En Stock</strong></span>
+						<% if product.stock > 0 %>
+							<span>Estado: </span><span class="text-success"><strong>En Stock</strong></span>
+						<%else%>
+							<span>Estado: </span><span class="text-danger"><strong>Sin Stock</strong></span>
+						<%end%>
 				</div>
 		</div>
 	</td>
@@ -21,7 +25,14 @@
 		</td>
 	<% else %>
 		<td class="col-md-1">
-			<%= link_to "Comprar" , product, class: "btn btn-success" %>
+			<%= link_to "Ver Detalles" , product, class: "btn btn-primary" %>
+		</td>
+		<td class="col-md-1">
+			<% if product.stock > 0 %>
+				<a href="/cart/<%= product.id%>" class="btn btn-success">
+					Añadir <span class="glyphicon glyphicon-shopping-cart"></span>
+				</a>
+			<%end%>
 		</td>
   <% end %>
 

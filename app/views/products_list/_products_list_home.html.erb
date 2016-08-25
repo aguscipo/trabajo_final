@@ -1,8 +1,8 @@
 <% if @products.any? %>
 	<% if logged_in? && current_user.admin? %>
-		<p><%= link_to "Nuevo producto", new_product_path, class: "btn btn-lg btn-primary" %></p>
+		<p><%= link_to "Nuevo producto", new_product_path, class: "btn btn-lg btn-primary", id:"new-product"%></p>
 	<%end%>
-  <h3>Productos (<%= @products.count %>)</h3>
+  <h3>Lista de Productos (<%= @products.count %>)</h3>
   <%= will_paginate @products %>
 			<div class="col-md-10">
 					<table class="table table-hover">
@@ -22,5 +22,4 @@
 			</div>
     </div>
 
-  <%= will_paginate @products %>
 <% end %>

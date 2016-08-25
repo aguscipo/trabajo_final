@@ -2,7 +2,7 @@ class TrademarksController < ApplicationController
   before_action :admin_user
 
   def index
-    @trademarks = Trademark.paginate(page: params[:page])
+    @trademarks = Trademark.paginate(page: params[:page],:per_page => 10)
   end
 
   def show

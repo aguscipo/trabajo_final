@@ -11,7 +11,6 @@ class ProductsListController < ApplicationController
 		@products = search.results
 		@trademark = trademark
 		@category= category
-
 		render 'filter'
 	end
 

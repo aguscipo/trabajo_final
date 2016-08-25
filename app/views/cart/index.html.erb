@@ -1,0 +1,85 @@
+<% provide(:title, 'Carrito') %>
+<h1>Carrito de compras</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-10 col-md-offset-1">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th></th>
+                        <th>Cantidad</th>
+                        <th></th>
+                        <th style="text-align: center">Precio</th>
+                        <th style="text-align: center">Subtotal</th>
+                        <th> </th>
+                    </tr>
+                </thead>
+                <tbody>
+                  <%total=0%>
+                  <% @cart.each do |id, quantity| %>
+                    <% product = Product.find_by id:(id) %>
+                    <tr>
+                        <td class="col-sm-8 col-md-6">
+                          <div class="media">
+                              <%= link_to product,class:'link-image thumbnail pull-left' do %>
+                               <%= image_tag product.picture.url if product.picture? %>
+                              <% end %>
+                              <div class="media-body">
+                                  <h4 class="media-heading"><a href="#"><%=product.name%></a></h4>
+                              </div>
+                          </div>
+                        </td>
+                        <td class="col-sm-1 col-md-1"  style="text-align: right">
+                          <a href="/cart/decrement/<%= product.id%>" class="btn btn-primary">
+                                <span class="glyphicon glyphicon-minus"></span>
+                          </a>
+                        </td>
+                        <td class="col-sm-1 col-md-1">
+                          <input type="text" class="form-control" id="quantity" value="<%=quantity%>" readonly>
+                        </td>
+                        <td class="col-sm-1 col-md-1">
+                          <a href="/cart/increment/<%= product.id%>" class="btn btn-primary">
+                                <span class="glyphicon glyphicon-plus"></span>
+                          </a>
+                        </td>
+                        <td class="col-sm-1 col-md-1 text-center"><strong>$<%=product.price%></strong></td>
+                        <td class="col-sm-1 col-md-1 text-center"><strong>$<%=product.price*quantity%></strong></td>
+                        <td class="col-sm-1 col-md-1">
+                          <a href="/cart/delete/<%= product.id%>" class="btn btn-danger">
+                                <span class="glyphicon glyphicon-remove"></span> Eliminar
+                          </a>
+                        </td>
+
+                    </tr>
+                    <%total+=product.price*quantity%>
+                    <%end%>
+                    <% if !@cart.empty? %>
+                    <tr>
+                        <td>   </td>
+                        <td>   </td>
+                        <td>   </td>
+                        <td><h3>Total</h3></td>
+                        <td class="text-right"><h3><strong>$<%=total%></strong></h3></td>
+                    </tr>
+                    <tr>
+                        <td>   </td>
+                        <td>   </td>
+                        <td>   </td>
+                        <td>
+                          <%= link_to root_path, class:"btn btn-default" do%>
+                            <span class="glyphicon glyphicon-shopping-cart"></span> Continuar comprando
+                          <%end%>
+
+                        </td>
+                        <td>
+                        <%= button_to new_payment_path, class:"btn btn-success",params: {'amount'=>total}  do %>
+                          Checkout <span class="glyphicon glyphicon-play"></span>
+                        <%end%>
+                        </td>
+                    </tr>
+                    <%end%>
+                </tbody>
+            </table>
+        </div>
+    </div>

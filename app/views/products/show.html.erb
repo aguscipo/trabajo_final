@@ -3,7 +3,7 @@
 	<div class="col-lg-3">
 		<%= image_tag @product.picture.url,:class => "product-show-image" if @product.picture? %>
 	</div>
-	<div class="col-lg-5" , style="text-align:left">
+	<div class="col-lg-8" , style="text-align:left">
 		<h1> <%=@product.name%> </h1>
 		<p> Precio: $<%=@product.price%></p>
 		<p> Descripción: <%=@product.description%></p>
@@ -11,4 +11,6 @@
 		<p> Categoría: <%=Category.find(@product.category_id).name%></p>
 	</div>
 </div>
-<%= link_to "Comprar", new_payment_path, class: "btn btn-lg btn-success" %>
+<a href="/cart/<%= @product.id%>" class="btn btn-lg btn-success">
+	Añadir <span class="glyphicon glyphicon-shopping-cart"></span>
+</a>

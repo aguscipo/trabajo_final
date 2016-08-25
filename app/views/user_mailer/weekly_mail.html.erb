@@ -1,0 +1,15 @@
+<h1>E-Shop</h1>
+
+<p>Hola <%= @user.name %>,</p>
+
+<p>Estas son nuestras ofertas semanales, puedes comprar desde nuestra página siguiendo el link y recibir los productos en tu casa!</p>
+<%for offer in @offers%>
+  <%= div_for(offer) do %>
+    <% link_to(offer) do %>
+      <%= offer.name %>
+      |$<%= offer.price %>
+    <%end%>
+  <%end%>
+<%end%>
+<br></br>
+<%= link_to "Cancelar suscripción", unsubscribe_url(email: @user.email) %>

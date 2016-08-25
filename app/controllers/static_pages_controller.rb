@@ -1,6 +1,6 @@
 class StaticPagesController < ApplicationController
  def home
- 	@products = Product.paginate(page: params[:page], :per_page => 30)
+ 	@products = Product.paginate(page: params[:page], :per_page => 10)
  	p= Product.where.not(offer:false,cover_picture:nil)
  	@offers = p.first(5)
  end
