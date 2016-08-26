@@ -1,7 +1,6 @@
 class CreatePayments < ActiveRecord::Migration
   def change
     create_table :payments do |t|
-      t.string :email
       t.string :card_number
       t.string :security_code
       t.string :expiration_month

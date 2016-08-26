@@ -22,6 +22,7 @@ class PaymentsController < ApplicationController
     		payment = $mp.post("/v1/payments", paymentData);
         if payment["response"]["status"] == "approved"
           @payment = Payment.new(payment_params)
+          @payment.user=User.find_by(email: params[:email])
           cart = session[:cart]
           cart.each do |id, quantity|
             product=Product.find(id)
@@ -38,8 +39,11 @@ class PaymentsController < ApplicationController
           end
           session[:cart]={}
           @payment.amount=params[:amount]
-          @payment.save
-          flash[:success] = '¡Listo, se acreditó tu pago! Recibira un mail en su casilla el detalle de la compra'
+          if @payment.save
+            flash[:success] = '¡Listo, se acreditó su pago! Muchas gracias por su compra'
+          else
+            render 'new'
+          end
         else
           flash[:danger] = 'Lo sentimos tu pago no se ha acreditado (tarjeta invalida)'
         end
@@ -57,6 +61,6 @@ class PaymentsController < ApplicationController
 
   private
     def payment_params
-        params.require(:payment).permit(:card_number, :card_holder, :doc_number, :email, :amount,:doc_type)
+        params.require(:payment).permit(:card_number, :card_holder, :doc_number, :amount,:doc_type)
     end
 end

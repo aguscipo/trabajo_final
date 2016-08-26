@@ -5,9 +5,6 @@ class StaticPagesController < ApplicationController
  	@offers = p.first(5)
  end
 
-  def help
-  end
-
   def about
   end
 
