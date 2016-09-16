@@ -12,7 +12,7 @@ class PaymentsController < ApplicationController
       paymentData = Hash[
   				"transaction_amount" => params[:amount].to_f,
   				"token" => params[:token],
-  				"description" => "Title of what you are paying for",
+  				"description" => "Descrition",
   				"installments" => 1,
   				"payment_method_id" => params[:payment][:card_holder],
   				"payer" => Hash[
@@ -45,7 +45,7 @@ class PaymentsController < ApplicationController
             render 'new'
           end
         else
-          flash[:danger] = 'Lo sentimos tu pago no se ha acreditado (tarjeta invalida)'
+          flash[:danger] = 'Lo sentimos su pago no se ha acreditado. Por favor intente nuevamente'
         end
         redirect_to root_url and return
   end

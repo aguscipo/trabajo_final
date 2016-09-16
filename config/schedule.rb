@@ -18,6 +18,6 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
-every 1.week do
+every 1.minute do
     runner "User.weekly_update", :environment => 'development',:output => 'log/cron.log'
 end
