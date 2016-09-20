@@ -14,7 +14,7 @@ class ProductsController < ApplicationController
   end
 
   def update
-		@product = Product.find_by name: params[:original_name]
+		@product = Product.find_by name: params[:name]
     if @product.update_attributes(product_params)
       flash[:success] = t(:product_update)
       redirect_to @product

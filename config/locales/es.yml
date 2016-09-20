@@ -30,25 +30,20 @@ es:
   activerecord:
       attributes:
         user:
-          name: "El nombre"
+          name: "Nombre"
         product:
-          name: "El nombre"
-          price: "El precio"
-          category_id: "La categoría"
-          trademark_id: "La marca"
-          description: "La descripcion"
-          code: "El código"
-          password: "La contraseña"
+          name: "Nombre"
+          price: "Precio"
+          category_id: "Categoría"
+          trademark_id: "Marca"
+          description: "Descripcion"
+          code: "Código"
+          password: "Contraseña"
         category:
-          name: "El nombre"
+          name: "Nombre"
         trademark:
-          name: "El nombre"
+          name: "Nombre"
       errors:
-        template:
-          header:
-            one:   "1 error prohibited this %{model} from being saved"
-            other: "%{count} errors prohibited this %{model} from being save"
-          body: "There were problems with the following fields:"
         messages:
           record_invalid: "La validación falló: %{errors}"
           restrict_dependent_destroy:

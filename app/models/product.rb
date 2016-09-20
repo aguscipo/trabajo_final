@@ -23,7 +23,7 @@ class Product < ActiveRecord::Base
   def to_param #Modificar para que aparezca nombre de categoria en la url
     name
   end
-  
+
   # Validates the size of an uploaded picture.
   def picture_size
     if picture.size > 5.megabytes

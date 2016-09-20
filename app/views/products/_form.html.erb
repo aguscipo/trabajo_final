@@ -1,15 +1,13 @@
-<% @original_name= @product.name %>
-<%= form_for(@product , html: { multipart: true }) do |f| %>
+<%= form_for  @product do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
     <%= f.label :codigo %>
-    <%= f.text_field :code, class: 'form-control' %>
+    <%= f.text_field :code, class: 'form-control', :required => true %>
 
     <%= f.label :nombre %>
-    <%= f.text_field :name,:validate => true, class: 'form-control' %>
-    <%= hidden_field_tag :original_name, @original_name %>
+    <%= f.text_field :name, class: 'form-control', :required => true %>
 
     <%= f.label :descripcion %>
-    <%= f.text_area :description, class: 'form-control'%>
+    <%= f.text_area :description, class: 'form-control', :required => true%>
 
     <%= f.label :categoria %> |
     <%= link_to "Añadir Categoria", new_category_path, remote: true %> |
@@ -22,10 +20,10 @@
     <%= f.collection_select :trademark_id, Trademark.all, :id, :name, {prompt: "Seleccione una marca"}, {class: "form-control"} %>
 
     <%= f.label :precio %>
- 	  <%= f.number_field :price, in: 1.0..50000.0, step: 0.5, class: 'form-control' %>
+ 	  <%= f.number_field :price, in: 1.0..50000.0, step: 0.5, class: 'form-control', :required => true %>
 
     <%= f.label :stock %>
-    <%= f.number_field :stock,  in: 0..10000, step: 1, class: 'form-control' %>
+    <%= f.number_field :stock,  in: 0..10000, step: 1, class: 'form-control', :required => true %>
 
     <span class="picture">
         <%= f.label :imagen %>

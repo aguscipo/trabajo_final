@@ -21,7 +21,6 @@ gem 'net-ssh'
 gem 'sunspot_rails'
 gem 'mercadopago-sdk'
 gem 'whenever', :require => false
-gem 'judge'
 
 group :development, :test do
   gem 'sqlite3',     '1.3.9'
