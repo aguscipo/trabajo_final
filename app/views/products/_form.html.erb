@@ -1,13 +1,12 @@
-<%= form_for(@product , :builder => Judge::FormBuilder, html: { multipart: true }) do |f| %>
+<% @original_name= @product.name %>
+<%= form_for(@product , html: { multipart: true }) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
     <%= f.label :codigo %>
     <%= f.text_field :code, class: 'form-control' %>
 
     <%= f.label :nombre %>
-    <%= f.text_field :name, class: 'form-control' %>
-
-    <%= hidden_field_tag :original_name, @product.name %>
-
+    <%= f.text_field :name,:validate => true, class: 'form-control' %>
+    <%= hidden_field_tag :original_name, @original_name %>
 
     <%= f.label :descripcion %>
     <%= f.text_area :description, class: 'form-control'%>
@@ -26,7 +25,7 @@
  	  <%= f.number_field :price, in: 1.0..50000.0, step: 0.5, class: 'form-control' %>
 
     <%= f.label :stock %>
-    <%= f.number_field :stock,  in: 1..10000, step: 1, class: 'form-control' %>
+    <%= f.number_field :stock,  in: 0..10000, step: 1, class: 'form-control' %>
 
     <span class="picture">
         <%= f.label :imagen %>

@@ -7,7 +7,7 @@ class PaymentsController < ApplicationController
   end
 
   def create
-  	$mp = MercadoPago.new('TEST-5640660696498136-080316-544feb8227681243019101f924b99726__LD_LC__-12055441')
+  	$mp = MercadoPago.new(Rails.application.secrets.access_token_mercadopago)
   	$mp.sandbox_mode(true)
     paymentData = Hash[
 				"transaction_amount" => params[:amount].to_f,
