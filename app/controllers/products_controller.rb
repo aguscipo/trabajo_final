@@ -14,9 +14,9 @@ class ProductsController < ApplicationController
   end
 
   def update
-		@product = Product.find_by name: params[:name]
+		@product = Product.find_by name: params[:original_name]
     if @product.update_attributes(product_params)
-      flash[:success] = "Producto actualizado"
+      flash[:success] = t(:product_update)
       redirect_to @product
     else
       render 'edit'
@@ -26,7 +26,7 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
   	if @product.save
-		flash[:success] = "Producto creado!"
+		flash[:success] = t(:product_create)
 			redirect_to root_url
   	else
 	    	render 'new'
@@ -34,9 +34,9 @@ class ProductsController < ApplicationController
   end
 
 	def destroy
-        (Product.find_by name: params[:name]).destroy
-        flash[:success] = "El producto ha sido eliminado"
-        redirect_to request.referrer || root_url
+	  (Product.find_by name: params[:name]).destroy
+	  flash[:success] = t(:product_delete)
+	  redirect_to request.referrer || root_url
 	end
 
 	def search
@@ -45,7 +45,7 @@ class ProductsController < ApplicationController
 			order_by :price, :asc
     end
 		@products = search.results
-		flash.now[:info] = "Ningún nombre de prodcuto coincide con su búsqueda" if !@products.any?
+		flash.now[:info] = t(:product_search) if !@products.any?
 	end
 
 	private

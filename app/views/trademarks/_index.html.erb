@@ -1,4 +1,4 @@
-<% @trademarks.each do |trademark| %>
+<% (Trademark.all).each do |trademark| %>
   <tr>
     <td><%= trademark.name %></td>
     <td><%= link_to "Editar", edit_trademark_path(trademark), remote: true, class: "btn btn-warning" %></td>

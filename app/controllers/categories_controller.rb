@@ -10,7 +10,6 @@ class CategoriesController < ApplicationController
   end
 
   def create
-    @categories = Category.all
     @category = Category.create(category_params)
   end
 
@@ -34,7 +33,6 @@ class CategoriesController < ApplicationController
   end
 
   def update
-    @categories = Category.all
     @category= Category.find_by name:(params[:name])
     @category.update_attributes(category_params)
   end

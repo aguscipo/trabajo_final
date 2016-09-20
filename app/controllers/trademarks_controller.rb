@@ -14,7 +14,6 @@ class TrademarksController < ApplicationController
   end
 
   def create
-    @trademarks = Trademark.all
     @trademark = Trademark.create(trademark_params)
   end
 
@@ -23,7 +22,6 @@ class TrademarksController < ApplicationController
   end
 
   def update
-    @trademarks = Trademark.all
     @trademark= Trademark.find_by name:(params[:name])
     @trademark.update_attributes(trademark_params)
   end

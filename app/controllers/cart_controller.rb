@@ -1,6 +1,6 @@
 class CartController < ApplicationController
   before_action :logged_in_user
-  
+
   def add
     id = params[:id]
     cart= session[:cart]
@@ -20,7 +20,7 @@ class CartController < ApplicationController
 
   def index
     @cart = session[:cart]
-    flash.now[:info] = 'No hay ningún producto en su carrito de compras' if @cart.length == 0
+    flash.now[:info] =  t(:empty_shopping_cart) if @cart.length == 0
   end
 
   def increment

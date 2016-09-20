@@ -1,10 +1,13 @@
-<%= form_for(@product , html: { multipart: true }) do |f| %>
+<%= form_for(@product , :builder => Judge::FormBuilder, html: { multipart: true }) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
     <%= f.label :codigo %>
     <%= f.text_field :code, class: 'form-control' %>
 
     <%= f.label :nombre %>
     <%= f.text_field :name, class: 'form-control' %>
+
+    <%= hidden_field_tag :original_name, @product.name %>
+
 
     <%= f.label :descripcion %>
     <%= f.text_area :description, class: 'form-control'%>

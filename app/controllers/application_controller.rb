@@ -1,6 +1,11 @@
 class ApplicationController < ActionController::Base
+  before_action :set_locale
   protect_from_forgery with: :exception
   include SessionsHelper
+
+  def set_locale
+    I18n.locale = params[:locale] || I18n.default_locale
+  end
 
   private
 
@@ -8,7 +13,7 @@ class ApplicationController < ActionController::Base
     def logged_in_user
       unless logged_in?
         store_location
-        flash[:danger] = "Por favor inicie sesión"
+        flash[:danger] = t(:please_log_in)
         redirect_to login_url
       end
     end

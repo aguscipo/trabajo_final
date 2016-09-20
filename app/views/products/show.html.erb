@@ -11,6 +11,8 @@
 		<p> Categoría: <%=Category.find(@product.category_id).name%></p>
 	</div>
 </div>
-<a href="/cart/<%= @product.id%>" class="btn btn-lg btn-success">
-	Añadir <span class="glyphicon glyphicon-shopping-cart"></span>
-</a>
+<% if (current_user.nil?) ||  (logged_in? && !current_user.admin?) %>
+	<a href="/cart/<%= @product.id%>" class="btn btn-lg btn-success">
+		Añadir <span class="glyphicon glyphicon-shopping-cart"></span>
+	</a>
+<%end%>
