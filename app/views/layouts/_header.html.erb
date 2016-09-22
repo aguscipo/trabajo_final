@@ -30,7 +30,7 @@
     <!--Formulario de Búsqeda-->
     <%= form_tag(search_products_path , method: 'get', class: "navbar-form navbar-left") do %>
       <div class="form-group">
-        <%= text_field_tag :search, params[:search], placeholder: "Ingrese un producto", class: "form-control" %>
+        <%= text_field_tag :search, params[:search], placeholder: "Ingrese un producto", class: "form-control",:required => true %>
       </div>
       <%= submit_tag "Buscar", class: "btn-search" %>
     <% end %>

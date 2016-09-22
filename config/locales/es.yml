@@ -9,6 +9,7 @@ es:
   mail_not_found: "Direccion de email no encontrada"
   password_reset: "Su contraseña ha sido reseteada"
   no_stock: "Lo sentimos no hay stock disponible para "
+  limit_stock: "Lo sentimos llego al limite de stock para "
   payment_success: "¡Listo, se acreditó su pago! Muchas gracias por su compra"
   payment_error: "Lo sentimos su pago no se ha acreditado. Por favor intente nuevamente"
   product_update: "El producto ha sido actualizado correctamente"
@@ -21,6 +22,8 @@ es:
   update_user: "Perfil actualizado"
   cancel_subscription: "Su subscripcion a las ofertas semanales de E-Shop fue cancelada"
   form_errors: "El formulario contiene "
+  expired_card: "La tarjeta esta vencida"
+  expired_time: "El tiempo para resetear su contraseña ha expirado" 
 
   will_paginate:
     previous_label: "&#8592; Anterior"

@@ -3,9 +3,14 @@ class CartController < ApplicationController
 
   def add
     id = params[:id]
+    product=Product.find(id)
     cart= session[:cart]
     if cart[id]
-      cart[id] +=1
+      if product.stock > cart[id]
+        cart[id] +=1
+      else
+      flash[:danger] = t(:limit_stock) +  product.name
+      end
     else
       cart[id]=1
     end

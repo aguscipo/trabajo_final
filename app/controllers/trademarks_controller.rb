@@ -31,7 +31,6 @@ class TrademarksController < ApplicationController
   end
 
   def destroy
-    @trademarks = Trademark.all
     @trademark= Trademark.find_by name:(params[:name])
     @trademark.destroy
   end

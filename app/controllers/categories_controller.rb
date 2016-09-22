@@ -15,17 +15,12 @@ class CategoriesController < ApplicationController
 
   def show
     category = Category.find_by name:(params[:name])
-    search = Product.search do
-      with(:category_id, category.id)
-      order_by :price, :asc
-    end
-    @products=search.results
+    @products= category.get_products
     @category = category
     @trademarks = Set.new
     @products.each do |product|
       @trademarks.add(product.trademark)
     end
-
   end
 
   def edit

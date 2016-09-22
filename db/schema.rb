@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160826130359) do
+ActiveRecord::Schema.define(version: 20160921212216) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -33,8 +33,8 @@ ActiveRecord::Schema.define(version: 20160826130359) do
     t.string   "card_holder"
     t.string   "doc_type"
     t.string   "doc_number"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.integer  "amount"
     t.integer  "user_id"
   end
@@ -48,6 +48,11 @@ ActiveRecord::Schema.define(version: 20160826130359) do
 
   add_index "payments_products", ["payment_id", "product_id"], name: "index_payments_products_on_payment_id_and_product_id"
   add_index "payments_products", ["product_id", "payment_id"], name: "index_payments_products_on_product_id_and_payment_id"
+
+  create_table "product_lists", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "products", force: :cascade do |t|
     t.string   "name"

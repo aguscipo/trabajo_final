@@ -1,0 +1,16 @@
+<% if !@trademarks.nil? && @trademarks.length>1%>
+  <strong>Marcas</strong>
+  <% @trademarks.each do |trademark| %>
+    </br>
+    <%= link_to filter_path(:trademark => trademark,:category => @category) do %>
+      <%=trademark.name %>
+    <% end %>
+  <% end %>
+<% else %>
+  <strong>Marca</strong>
+  </br>
+  <%= link_to @category do%>
+    <%=@trademark.name%>
+    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+  <%end %>
+<%end %>

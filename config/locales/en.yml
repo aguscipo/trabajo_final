@@ -41,3 +41,5 @@ en:
   check_mail: "Please check your e-mail to activate your account"
   update_user: "Profile updated"
   cancel_subscription: "Subscription canceled"
+  expired_card: "Expired card"
+  expired_time: "Time to reset password expired"

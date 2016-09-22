@@ -1,0 +1,8 @@
+<strong>Ordenar por</strong>
+<%=form_tag(order_path , method: 'get') do %>
+  <%= hidden_field_tag :category , @category[:name] %>
+  <% if !@trademark.nil?%>
+    <%= hidden_field_tag :trademark , @trademark[:name] %>
+  <% end %>
+  <%=select_tag "order_by", options_for_select([ "Menor precio", "Mayor precio"],@default), class: "form-control", :onchange => "this.form.submit()"%>
+<% end %>

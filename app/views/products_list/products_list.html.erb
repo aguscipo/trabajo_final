@@ -1,0 +1,17 @@
+<% if @products.any? %>
+	<% if logged_in? && current_user.admin? %>
+		<p><%= link_to "Nuevo producto", new_product_path, class: "btn btn-lg btn-primary", id:"new-product" %></p>
+	<%end%>
+  <h3>Productos (<%= @products.count %>)</h3>
+  <%= will_paginate @products %>
+    <div class="row">
+			<div class="col-md-2">
+				</br>
+          <%= render 'trademarks_filter'%>
+				</br></br>
+          <%= render 'order_by'%>
+			</div>
+      <%= render 'products_table'%>
+    </div>
+  <%= will_paginate @products %>
+<% end %>
