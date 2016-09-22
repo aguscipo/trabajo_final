@@ -29,9 +29,10 @@
 		</td>
 		<td class="col-md-1">
 			<% if product.stock > 0 %>
-				<a href="/cart/<%= product.id%>" class="btn btn-success">
-					Añadir <span class="glyphicon glyphicon-shopping-cart"></span> 
-				</a>
+				<%= link_to cart_add_path(:id => product.id), class:"btn btn-success" do %>
+					Añadir <span class="glyphicon glyphicon-shopping-cart"></span>
+				<% end %>
+
 			<%end%>
 		</td>
   <% end %>

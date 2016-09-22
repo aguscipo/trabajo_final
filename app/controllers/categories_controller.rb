@@ -21,6 +21,7 @@ class CategoriesController < ApplicationController
     @products.each do |product|
       @trademarks.add(product.trademark)
     end
+    render 'products_list/products_list'
   end
 
   def edit

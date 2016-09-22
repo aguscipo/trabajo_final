@@ -15,9 +15,9 @@
             </span>
           </span>
           <span class="item-right">
-            <a href="/cart/delete/<%= product.id%>" class="btn btn-xs btn-danger pull-right">
+            <%= link_to cart_path(:id => product.id), method: "delete", class:"btn btn-xs btn-danger pull-right" do %>
               <span class="glyphicon glyphicon-remove"></span>
-            </a>
+            <% end %>     
           </span>
         </span>
       </li>

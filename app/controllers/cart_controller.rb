@@ -17,7 +17,7 @@ class CartController < ApplicationController
     redirect_to :action => :index
   end
 
-  def remove
+  def destroy
     id = params[:id]
     session[:cart].delete(id)
     redirect_to :action => :index

@@ -11,8 +11,8 @@
 		<p> Categoría: <%=Category.find(@product.category_id).name%></p>
 	</div>
 </div>
-<% if (current_user.nil?) ||  (logged_in? && !current_user.admin?) %>
-	<a href="/cart/<%= @product.id%>" class="btn btn-lg btn-success">
+<% if ((current_user.nil?) ||  (logged_in? && !current_user.admin?)) && (@product.stock > 0) %>
+	<%= link_to cart_add_path(:id => @product.id), class:"btn btn-lg btn-success" do %>
 		Añadir <span class="glyphicon glyphicon-shopping-cart"></span>
-	</a>
+	<% end %>
 <%end%>
