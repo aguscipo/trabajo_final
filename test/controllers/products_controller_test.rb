@@ -21,21 +21,21 @@ class ProductsControllerTest < ActionController::TestCase
   end
 
   test "should redirect destroy when logged in as a non-admin" do
-    log_in_as(@non_admin_user) 	
+    log_in_as(@non_admin_user)
   	assert_no_difference 'Product.count' do
-  		delete :destroy, id: @product
+  		delete :destroy, name: @product.name
   	end
   	assert_redirected_to root_url
   end
 
   test "should redirect edit when logged in as a non-admin" do
-    log_in_as(@non_admin_user) 
-    get :edit, id: @product
-    assert_redirected_to root_url 
+    log_in_as(@non_admin_user)
+    get :edit, name: @product.name
+    assert_redirected_to root_url
   end
 
   test "should redirect update when not logged in" do
-    patch :update, id: @product, product: { name: @product.name }
+    patch :update, name: @product.name, product: { name: @product.name }
     assert_redirected_to root_url
   end
 end

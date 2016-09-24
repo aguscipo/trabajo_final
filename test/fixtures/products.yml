@@ -1,8 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
 one:
   name: Impresora HL-1212
-  description: Impresora Monofunción. Segmento Oficina y Profesionales. Teconología de Impresión Laser. Resolución de Impresión 2400x600dpi 
+  description: Impresora Monofunción. Segmento Oficina y Profesionales. Teconología de Impresión Laser. Resolución de Impresión 2400x600dpi
   category: Impresora
   price: 2000
   stock: 10
