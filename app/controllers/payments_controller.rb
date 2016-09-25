@@ -11,7 +11,7 @@ class PaymentsController < ApplicationController
     @payment = Payment.new(payment_params)
     @payment.user=User.find_by(email: params[:email])
     @payment.payment_data= { transaction_amount: @payment.amount, token: params[:token],	description: "Description", installments: 1,
-                            payment_method_id: @payment.card_holder, payer: Hash[email:@payment.user.email] }
+                            payment_method_id: @payment.card_holder, payer: Hash[email:params[:email]] }
     @payment.result = $mp.post("/v1/payments", @payment.payment_data)
     if @payment.approved?
       cart = session[:cart]
@@ -32,7 +32,7 @@ class PaymentsController < ApplicationController
       if @payment.save
         flash[:success] = t(:payment_success)
       else
-        render 'new'
+        flash[:danger] = t(:payment_error)
       end
     else
       flash[:danger] = t(:payment_error)

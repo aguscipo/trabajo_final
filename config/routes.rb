@@ -20,7 +20,6 @@ Rails.application.routes.draw do
   post 'pay' => 'payments#pay'
   post 'new_payment' => 'payments#new'
   delete 'logout'  => 'sessions#destroy'
-
   resources :users
 
   resources :products, param: :name do
