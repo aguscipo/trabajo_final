@@ -7,10 +7,12 @@
     <% end %>
   <% end %>
 <% else %>
-  <strong>Marca</strong>
-  </br>
-  <%= link_to @category do%>
-    <%=@trademark.name%>
-    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-  <%end %>
+<% if !@trademark.nil? %>
+    <strong>Marca</strong>
+    </br>
+    <%= link_to @category do%>
+      <%=@trademark.name %>
+      <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+    <%end %>
+<%end %>
 <%end %>

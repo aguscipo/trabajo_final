@@ -9,7 +9,7 @@
 				</br>
           <%= render 'products_list/trademarks_filter'%>
 				</br></br>
-          <%= render 'products_list/order_by'%>
+          <%= render 'products_list/order_by' if (@products.count > 1)%>
 			</div>
       <%= render 'products_list/products_table'%>
     </div>

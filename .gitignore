@@ -18,3 +18,6 @@
 
 # Ignore password and user mail.
 /config/initializers/app_env_vars.rb
+
+# Ignore solr indexes
+/solr/*
